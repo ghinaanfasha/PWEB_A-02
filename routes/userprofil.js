@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const connection = require('./config/database.js'); 
+const connection = require('../config/Database'); 
 
 /* GET user-profil. */
 router.get('/', function(req, res, next) {

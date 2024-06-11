@@ -1185,3 +1185,30 @@ video {
     background-color: rgb(30 41 59 / var(--tw-bg-opacity));
   }
 }
+
+.sidebar .sidebar-title {
+  font-weight: medium;
+  color: black;
+}
+
+.sidebar .sidebar-title .active{
+  color: lightyellow;
+}
+
+.sidebar-title:hover {
+  color: lightgoldenrodyellow;
+}
+
+.sidebar .active-sidebar{
+  padding: 8px;
+  width: 200px;
+  border-radius: 8px;
+  background-color: black !important;
+  transition: 1s;
+}
+
+/* .sidebar .active-sidebar:hover{
+  padding: 2em;
+  background-color: pink !important;
+  transition: 1s;
+} */
