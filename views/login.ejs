@@ -5,31 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-  <script>
-    async function loginProcess() {
-
-      var email = document.getElementById("email").value
-      var password = document.getElementById("password").value
-
-      try {
-        const response = await axios.post('http://localhost:3000/login', {
-          email: email,
-          password: password
-
-        });
-        console.log(response.data.accessToken);
-        window.location.assign("http://localhost:3000/userprofil")
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  </script>
   
 </head>
 <body>
     <div>
-        <div class="bg-gray-300">
+        <div class="bg-gray-300 ">
             <div class= "flex justify-end">
             <div class="bg-gray-700 rounded-2xl px-10 m-10">
                 <div class="mb-12 mt-20">

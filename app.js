@@ -10,7 +10,6 @@ var loginRouter = require('./routes/login');
 var dashboardRouter = require('./routes/dashboard');
 var userhomeRouter = require ('./routes/userhome')
 var userprofilRouter = require('./routes/userprofil');
-var ubahRouter = require('./routes/ubah');
 
 var app = express();
 
@@ -23,6 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'uploads')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -30,12 +30,11 @@ app.use('/login', loginRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/userhome', userhomeRouter);
 app.use('/userprofil', userprofilRouter);
-app.use('/ubah', ubahRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+// app.use(function(req, res, next) {
+//   next(createError(404));
+// });
 
 // error handler
 app.use(function(err, req, res, next) {
