@@ -5,7 +5,6 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-
 const getUsers = async(req, res) => {
     try {
         const users = await Users.findAll({

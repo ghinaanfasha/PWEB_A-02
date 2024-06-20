@@ -9,8 +9,8 @@
    <main class="grid grid-cols-6 grid-rows-3 gap-4">
         <aside class="col-span-1 row-span-3 bg-[#374353] h-screen p-4">
             <div class="h-1/4 flex flex-col items-center justify-center">
-                <div class="h-20 w-20 rounded-full bg-[#e3ebf8] cursor-pointer" onclick="window.location.href='profil.html'"></div>
-                <h4 class="text-[#e3ebf8]"><%= username %></h4>
+                <div class="h-20 w-20 rounded-full bg-[#e3ebf8] cursor-pointer" onclick="window.location.href='/userprofil'"></div>
+                <h4 class="text-[#e3ebf8]">rahma</h4>
             </div>
             <div class="flex flex-col w-full">
                 <button class="flex items-center text-[#e3ebf8] py-2 px-4 w-full transition-colors duration-300 cursor-pointer hover:bg-[#e3ebf8] hover:text-[#374353] rounded-md" onclick="window.location.href='/userhome'">
@@ -22,13 +22,13 @@
                 <button class="flex items-center text-[#e3ebf8] py-2 px-4 w-full transition-colors duration-300 cursor-pointer hover:bg-[#e3ebf8] hover:text-[#374353] rounded-md" onclick="window.location.href='#'">
                     <i class="fas fa-briefcase mr-4"></i> Magang
                 </button>
-                <button class="flex items-center text-[#374353] py-2 px-4 w-full bg-[#e3ebf8] rounded-md" onclick="window.location.href='profil.html'">
+                <button class="flex items-center text-[#374353] py-2 px-4 w-full bg-[#e3ebf8] rounded-md" onclick="window.location.href='/userprofil'">
                     <i class="fas fa-user mr-4"></i> Profil
                 </button>
             </div>
         </aside>
         <article class="col-span-5 row-span-3 p-2">
-            <div class="border border-[#031224] p-4 rounded-lg bg-[#374353] text-[#e3ebf8] cursor-pointer" onclick="window.location.href='profil.html'">
+            <div class="border border-[#031224] p-4 rounded-lg bg-[#374353] text-[#e3ebf8] cursor-pointer" onclick="window.location.href='userprofil'">
                 <h4>My Profile</h4>
             </div>
             <div class="flex flex-col items-center mt-4 p-8 border border-[#031224] rounded-lg">
@@ -49,12 +49,14 @@
                     <label for="nim" class="text-[#374353] font-semibold">NIM:</label>
                     <input type="text" id="nim" name="nim" class="mb-5 p-2 border border-[#CCD4F9] rounded-md bg-[#e3ebf8] text-[#374353] w-full">
                     <label for="email" class="text-[#374353] font-semibold">Email:</label>
-                    <input type="email" id="email" name="email" class="mb-5 p-2 border border-[#CCD4F9] rounded-md bg-[#e3ebf8] text-[#374353] w-full">
+                    <div class="mb-5 p-2 border border-[#CCD4F9] rounded-md bg-[#e3ebf8] text-[#374353] w-full">
+                        <p>rahma10@gmail.com</p>
+                    </div>
                     <label for="phone" class="text-[#374353] font-semibold">Contact Number:</label>
                     <input type="tel" id="phone" name="phone" class="mb-5 p-2 border border-[#CCD4F9] rounded-md bg-[#e3ebf8] text-[#374353] w-full">
                 </div>
                 <div class="flex justify-between w-2/3">
-                  <button type="submit" class="py-2 px-4 border-none rounded-md bg-[#374353] text-[#e3ebf8] cursor-pointer hover:bg-[#e3ebf8] hover:text-[#374353]">
+                  <button class="py-2 px-4 border-none rounded-md bg-[#374353] text-[#e3ebf8] cursor-pointer hover:bg-[#e3ebf8] hover:text-[#374353]" onclick="window.location.href='/ubah'">
                     Change Password
                   </button>
                   <button type="submit" class="py-2 px-4 border-none rounded-md bg-[#374353] text-[#e3ebf8] cursor-pointer hover:bg-[#e3ebf8] hover:text-[#374353]">
