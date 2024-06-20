@@ -6,30 +6,6 @@ const DataPendaftarModel = require("../models/DataPendaftarModel.js");
 
 dotenv.config();
 
-const getUsers = async (req, res) => {
-  try {
-    const users = await Users.findAll({
-      attributes: ["id", "name", "email"],
-    });
-    res.json(users);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-
-const listOfUsers = async () => {
-    try {
-      const users = await DataPendaftarModel.findAll({
-        attributes: ["id", "nama", "nim", "alasan_bergabung", "cv", "surat_komitmen"],
-      });
-      return users;
-    } catch (error) {
-      console.error('Error fetching user data:', error);
-      throw error; // Rethrow the error to be handled by the route handler
-    }
-  };
-
 const Register = async (req, res) => {
   const { name, email, password, confPassword } = req.body;
   if (password !== confPassword) {

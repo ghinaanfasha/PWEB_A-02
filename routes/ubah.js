@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET user-profil. */
+/* GET userhome. */
 router.get('/', function(req, res, next) {
-  res.render('userprofil', { title: 'Profil' });
+  res.render('ubah', { title: 'Rubah Password' });
 });
 
 module.exports = router;
