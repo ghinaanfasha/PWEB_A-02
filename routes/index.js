@@ -11,8 +11,5 @@ router.post("/logout" , auth.Logout)
 // });
 
 
-router.get('/admindaftar', function(req, res, next) {
-  res.render('admindaftar', { title: 'admindaftar' });
-});
 
 module.exports = router;

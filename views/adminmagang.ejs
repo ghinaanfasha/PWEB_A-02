@@ -3,104 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>Magang</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-    </style>
-  
-    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-             
-    <body class="bg-gray-100">
-        <div class="grid grid-cols-5">
-          <div class="col-span-1">
-      
-            <div class="h-screen pl-6 pt-8 pb-8 bg-gray-700  text-white sidebar">
-      
-              <div class="flex items-center mb-8">
-                <!-- <div class="w-12 h-12 bg-zinc-400 rounded-full mr-4"></div> -->
-                <img src="/images/logo-hmsi.png" alt="Logo HMSI" style="width: 170px; height: auto;">
-                <div class="text-base font-normal font-['Poppins']"></div>
-              </div>
+<body class="font-poppins m-0 p-0">
+    <main class="grid grid-cols-7 grid-rows-3">
 
-              <div class="space-y-6">
-                <div class="flex items-center active-sidebar">
-                  <div class="w-9 h-9  mr-4 "><i class="fa-solid fa-house "></i></i></div>
-                  <div class="text-base font-bold font-['Poppins'] sidebar-title"></div>
-                  <span class="active">Home</span>
-                </div>
-      
-      
-                <div class="flex items-center">
-                  <div class="w-8 h-8"><i class="fa-solid fa-briefcase"></i></div>
-                  <div class="text-base font-normal font-['Poppins'] sidebar-title "> Daftar</div>
-                </div>
-      
-                <div class="flex items-center">
-                  <div class="w-8 h-8"><i class="fa-solid fa-users"></i></div>
-                  <div class="text-base font-normal font-['Poppins'] sidebar-title">Magang</div>
-                </div>
-      
-                <div class="flex items-center">
-                  <div class="w-8 h-8"><i class="fa-solid fa-user"></i></div>
-                  <div class="text-base font-normal font-['Poppins'] sidebar-title">Profil</div>
-                </div>
-      
-                <form action="/logout" method="POST"></form>
-                <div class="flex items-center">
-                  <form action="/logout" method="POST"></form>
-                  <div class="w-8 h-8"><i class="fa-solid fa-right-from-bracket"></i></div>
-                  <div class="text-base font-normal font-['Poppins'] sidebar-title" onclick="window.location.href='/login'">
-                    Logout</div>
-                </div>
-      
-      
-                <script src="preline.js"></script>
-              </div>
+        <aside class="col-span-1 row-span-3 bg-[#374353] h-screen p-4 sticky top-0">
+            <div class="h-1/4 flex flex-col items-center justify-center mb-4">
+                <img src="/images/logo-hmsi.png" alt="HMSI" class="w-40">
             </div>
-          </div>
-          <div class="col-span-4">
-      
-            <header class=" bg-gray-700 border-b border-gray-700 text-sm py-9 sm:py-9">
-              <div class="me-8 md:me-8">
-                <a class="flex-none text-xl font-semibold text-white" href="#" aria-label="Brand">Magang laboratory Dasar Komputasi</a>
-              </div>
-      
-            </header>
-  
-  <!-- ========== MAIN CONTENT ========== -->
-  <main id="content">
-    <!-- Nav -->
-    <nav class="sticky -top-px bg-white text-sm font-medium text-black ring-1 ring-gray-900 ring-opacity-5 border-t shadow-sm shadow-gray-100 pt-6 md:pb-6 -mt-px" aria-label="Jump links">
-      <div class="max-w-7xl snap-x w-full flex items-center overflow-x-auto px-4 sm:px-6 lg:px-8 pb-4 md:pb-0 mx-auto [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300">
-        <div class="snap-center shrink-0 pe-5 sm:pe-8 sm:last-pe-0">
-          <a class="inline-flex items-center gap-x-2 hover:text-gray-500" href="#">Schedule</a>
-        </div>
-        <div class="snap-center shrink-0 pe-5 sm:pe-8 sm:last:pe-0">
-          <a class="inline-flex items-center gap-x-2 hover:text-gray-500" href="#">Modul</a>
-        </div>
-        <div class="snap-center shrink-0 pe-5 sm:pe-8 sm:last:pe-0">
-          <a class="inline-flex items-center gap-x-2 hover:text-gray-500" href="#">Assignments</a>
-        </div>
-        <div class="snap-center shrink-0 pe-5 sm:pe-8 sm:last:pe-0">
-          <a class="inline-flex items-center gap-x-2 hover:text-gray-500" href="#">Absensi</a>
-        </div>
-       
-        </div>
-      </div>
-    </nav>
-    <!-- End Nav -->
-
-  
-
-  
-    <div class="max-w-7xl min-h-[75rem] mx-auto py-10 px-4 sm:px-6 lg:px-8">
-      <!-- your content goes here ... -->
-    </div>
-  </main>
-  <!-- ========== END MAIN CONTENT ========== -->
-
+            <div class="flex flex-col w-full">
+                <button class="flex items-center text-[#e3ebf8] py-2 px-4 w-full transition-colors duration-300 cursor-pointer hover:bg-[#031227] hover:text-[#e3ebf8] rounded-md" onclick="window.location.href='/deskripsiadmin'">
+                    <i class="fas fa-home mr-4"></i> Home
+                </button>
+                <button class="flex items-center text-[#e3ebf8] py-2 px-4 w-full transition-colors duration-300 cursor-pointer hover:bg-[#031227] hover:text-[#e3ebf8] rounded-md" onclick="window.location.href='/admindaftar'">
+                    <i class="fas fa-list-alt mr-4"></i> Daftar
+                </button>
+                <button class="flex items-center text-[#e3ebf8] py-2 px-4 w-full transition-colors duration-300 cursor-pointer hover:bg-[#031227] hover:text-[#e3ebf8] rounded-md" onclick="window.location.href='/adminschedule'">
+                    <i class="fas fa-list-alt mr-4"></i> Magang
+                <button class="flex items-center text-[#e3ebf8] py-2 px-4 w-full transition-colors duration-300 cursor-pointer hover:bg-[#031227] hover:text-[#e3ebf8] rounded-md" onclick="window.location.href='#'">
+                    <i class="fas fa-file-alt mr-4"></i> Penilaian
+                </button>
+                <button class="flex items-center text-[#e3ebf8] py-2 px-4 w-full transition-colors duration-300 cursor-pointer hover:bg-[#031227] hover:text-[#e3ebf8] rounded-md" onclick="window.location.href='/adminprofil'">
+                    <i class="fas fa-user mr-4"></i> Profil
+                </button>
+            </div>
+        </aside>
+        <article class="col-span-6 row-span-3">
+            <header class="bg-[#374353] flex items-center h-32">
+                <h2 class="text-3xl text-white font-bold px-4">Magang Laboratory Dasar Komputasi</h2>
+              </header>
+              <nav class="bg-[#031227] text-white p-4">
+                  <ul class="flex space-x-4">
+                      <li><a href="#" class="hover:text-gray-300">Schedule</a></li>
+                      <li><a href="/adminmodul" class="hover:text-gray-300">Module</a></li>
+                      <li><a href="#" class="hover:text-gray-300">Assignments</a></li>
+                      <li><a href="#" class="hover:text-gray-300">Absensi</a></li>
+                  </ul>
+              </nav>
+        </article>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </main>
 </body>
 </html>

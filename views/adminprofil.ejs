@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/preline/dist/preline.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .profile-card {
+            background-color: #E0E7FF;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .profile-card input[type="text"] {
+            border: none;
+            border-bottom: 1px solid black;
+            background-color: transparent;
+            width: 100%;
+            text-align: center;
+        }
+
+        .profile-card button {
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .description-card,
+        .upload-card {
+            background-color: #E0E7FF;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .description-card button,
+        .upload-card button {
+            background-color: #000;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="font-poppins m-0 p-0">
+    <main class="grid grid-cols-6">
+        <!-- Sidebar -->
+        <aside class="col-span-1 row-span-3 bg-[#374353] h-screen p-4 sticky top-0">
+            <div class="h-1/4 flex flex-col items-center justify-center mb-4">
+                <img src="/images/logo-hmsi.png" alt="HMSI" class="w-40">
+            </div>
+            <div class="flex flex-col w-full">
+                <button
+                    class="flex items-center text-[#e3ebf8] py-2 px-4 w-full transition-colors duration-300 cursor-pointer hover:bg-[#031227] hover:text-[#e3ebf8] rounded-md"
+                    onclick="window.location.href='/deskripsiadmin'">
+                    <i class="fas fa-home mr-4"></i> Home
+                </button>
+                <button
+                    class="flex items-center text-[#e3ebf8] py-2 px-4 w-full transition-colors duration-300 cursor-pointer hover:bg-[#031227] hover:text-[#e3ebf8] rounded-md"
+                    onclick="window.location.href='/admindaftar'">
+                    <i class="fas fa-list-alt mr-4"></i> Daftar
+                </button>
+                <button
+                    class="flex items-center text-[#e3ebf8] py-2 px-4 w-full transition-colors duration-300 cursor-pointer hover:bg-[#031227] hover:text-[#e3ebf8] rounded-md"
+                    onclick="window.location.href='/adminschedule'">
+                    <i class="fas fa-list-alt mr-4"></i> Magang
+                    <button
+                        class="flex items-center text-[#e3ebf8] py-2 px-4 w-full transition-colors duration-300 cursor-pointer hover:bg-[#031227] hover:text-[#e3ebf8] rounded-md"
+                        onclick="window.location.href='#'">
+                        <i class="fas fa-file-alt mr-4"></i> Penilaian
+                    </button>
+                    <button
+                        class="flex items-center text-[#e3ebf8] py-2 px-4 w-full transition-colors duration-300 cursor-pointer hover:bg-[#031227] hover:text-[#e3ebf8] rounded-md"
+                        onclick="window.location.href='/adminprofil'">
+                        <i class="fas fa-user mr-4"></i> Profil
+                    </button>
+            </div>
+        </aside>
+
+        <!-- Header -->
+        <header class="col-span-5 sticky top-6 inset-x-0 flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full">
+            <nav class="relative max-w-[66rem] w-full bg-[#374353] rounded-[28px] py-3 ps-5 pe-2 md:flex md:items-center md:justify-between md:py-0 mx-2 lg:mx-auto"
+                aria-label="Global">
+                <a class="py-3 ps-px sm:px-3 md:py-4 text-sm text-white hover:text-neutral-300 focus:outline-none focus:text-neutral-300"
+                    aria-current="page">My Profile</a>
+                <div class="flex items-center justify-between">
+                    <div class="md:hidden">
+                        <button type="button"
+                            class="hs-collapse-toggle size-8 flex justify-center items-center text-sm font-semibold rounded-full bg-neutral-800 text-white disabled:opacity-50 disabled:pointer-events-none"
+                            data-hs-collapse="#navbar-collapse" aria-controls="navbar-collapse"
+                            aria-label="Toggle navigation">
+                            <svg class="hs-collapse-open:hidden flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg"
+                                width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="3" x2="21" y1="6" y2="6" />
+                                <line x1="3" x2="21" y1="12" y2="12" />
+                                <line x1="3" x2="21" y1="18" y2="18" />
+                            </svg>
+                            <svg class="hs-collapse-open:block hidden flex-shrink-0 size-4"
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M18 6 6 18" />
+                                <path d="m6 6 12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Profile Card -->
+        <div class="col-span-5 md:col-span-4 lg:col-span-3 p-12">
+            <div class="profile-card">
+                <div class="relative bg-gray-300 rounded-full h-40 w-40 flex items-center justify-center">
+                    <span class="text-white text-4xl">+</span>
+                    <input type="file" class="absolute inset-0 opacity-0 cursor-pointer"
+                        onchange="handleFileUpload(event)">
+                </div>
+                <div class="text-left md:col-span-4 lg:col-span-3 p-12">
+                    <h2 class="text-lg font-bold">My Profile</h2>
+                    <input type="text" value="Labor xxx" disabled />
+                    <input type="text" value="+62xxx.xxxx" disabled />
+                    <input type="text" value="Laborxxx@gmail.com" disabled />
+                    <div class="text-center p-9">
+                        <button>Simpan</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Description and Upload Card -->
+        <div class="col-span-5 md:col-span-2 p-12">
+            <div class="description-card mb-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-bold">Deskripsi Home</h2>
+                    <button onclick="updateDeskripsi()">Ubah</button>
+                </div>
+                <textarea id="deskripsi" class="bg-gray-300 w-full p-2" style="height: 120px; resize: vertical;"
+                    placeholder="Masukkan deskripsi"></textarea>
+            </div>
+
+
+            <!-- Upload Card -->
+            <div class="upload-card">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-bold">Upload Gambar</h2>
+                    <button>Ubah</button>
+                </div>
+                <div class="bg-gray-300 h-40 w-full"></div>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/preline/dist/preline.js"></script>
+    <script>
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const imgElement = document.querySelector('.profile-card .bg-gray-300');
+                imgElement.style.backgroundImage = `url(${e.target.result})`;
+                imgElement.style.backgroundSize = 'cover';
+                imgElement.style.backgroundPosition = 'center';
+                imgElement.innerHTML = '';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function updateDeskripsi() {
+            const deskripsi = document.getElementById('deskripsi').value;
+            try {
+                const response = await fetch('/deskripsiadmin', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        deskripsi
+                    })
+                });
+                const result = await response.json();
+                if (response.ok) {
+                    alert(result.msg);
+                    location.reload();
+                } else {
+                    alert(result.msg || 'Deskripsi gagal diperbarui');
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Internal server error');
+            }
+        }
+    </script>
+</body>
+
+</html>

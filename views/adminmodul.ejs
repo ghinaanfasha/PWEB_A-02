@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Magang</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+
+
+
+
+<body class="font-poppins m-0 p-0">
+    <!-- Partisi halaman -->
+    <main class="grid grid-cols-7 grid-rows-3">
+        <!-- Sidebar -->
+        <aside class="col-span-1 row-span-3 bg-[#374353] h-screen p-4 sticky top-0">
+            <div class="h-1/4 flex flex-col items-center justify-center mb-4">
+                <img src="/images/logo-hmsi.png" alt="HMSI" class="w-40">
+            </div>
+            <div class="flex flex-col w-full">
+                <button
+                    class="flex items-center text-[#e3ebf8] py-2 px-4 w-full transition-colors duration-300 cursor-pointer hover:bg-[#031227] hover:text-[#e3ebf8] rounded-md"
+                    onclick="window.location.href='/deskripsiadmin'">
+                    <i class="fas fa-home mr-4"></i> Home
+                </button>
+                <button
+                    class="flex items-center text-[#e3ebf8] py-2 px-4 w-full transition-colors duration-300 cursor-pointer hover:bg-[#031227] hover:text-[#e3ebf8] rounded-md"
+                    onclick="window.location.href='/admindaftar'">
+                    <i class="fas fa-list-alt mr-4"></i> Daftar
+                </button>
+                <button
+                    class="flex items-center text-[#e3ebf8] py-2 px-4 w-full transition-colors duration-300 cursor-pointer hover:bg-[#031227] hover:text-[#e3ebf8] rounded-md"
+                    onclick="window.location.href='/adminschedule'">
+                    <i class="fas fa-list-alt mr-4"></i> Magang
+                    <button
+                        class="flex items-center text-[#e3ebf8] py-2 px-4 w-full transition-colors duration-300 cursor-pointer hover:bg-[#031227] hover:text-[#e3ebf8] rounded-md"
+                        onclick="window.location.href='#'">
+                        <i class="fas fa-file-alt mr-4"></i> Penilaian
+                    </button>
+                    <button
+                        class="flex items-center text-[#e3ebf8] py-2 px-4 w-full transition-colors duration-300 cursor-pointer hover:bg-[#031227] hover:text-[#e3ebf8] rounded-md"
+                        onclick="window.location.href='/adminprofil'">
+                        <i class="fas fa-user mr-4"></i> Profil
+                    </button>
+            </div>
+        </aside>
+        <!-- Akhir sidebar -->
+
+        <!-- Konten -->
+        <article class="col-span-6 row-span-3">
+            <header class="bg-[#374353] flex items-center h-32">
+                <h2 class="text-3xl text-white font-bold px-4">Magang Laboratory Dasar Komputasi</h2>
+            </header>
+            <nav class="bg-[#031227] text-white p-4">
+                <ul class="flex space-x-4">
+                    <li><a href="/adminschedule" class="hover:text-gray-300">Schedule</a></li>
+                    <li><a href="/adminmodul" class="hover:text-gray-300">Module</a></li>
+                    <li><a href="#" class="hover:text-gray-300">Assignments</a></li>
+                    <li><a href="#" class="hover:text-gray-300">Absensi</a></li>
+                </ul>
+            </nav>
+
+            <div class="container mx-auto mt-8 p-3">
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <div id="id_modul">
+                    </div>
+                    <h2 class="text-2xl mb-4">Modul XXXX</h2>
+                    ______________________________________________________________________________________________________________________________________________
+                    <div class="flex justify-between items-center mb-4">
+                        <!-- <span>Judul Modul</span>
+                    <div class="space-x-2">
+                        <a href="#" class="text-blue-600 hover:underline">View</a>
+                        <a href="#" class="text-blue-600 hover:underline">Download</a>
+                    </div> -->
+                        <table class="table-auto" border="2">
+                            <thead>
+                                <tr>
+                                    <th>Judul Modul</th>
+                                    <th>Keterangan</th>
+                                    <th>Modul</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% data.forEach(function(item) { %>
+                                    <tr>
+                                        <td>
+                                            <%= item.judul_modul %>
+                                        </td>
+                                        <td>
+                                            <%= item.keterangan %>
+                                        </td>
+                                        <td>
+                                            <a href="/uploads/modul/<%= item.modul %>" target="_blank">Lihat modul</a>
+                                        </td>
+                                    </tr>
+                                    <% }); %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 p-4 rounded-lg mt-6">
+                    <h3 class="text-xl mb-4">Tambah Modul</h3>
+                    <form method="post" enctype="multipart/form-data" action="/backend/admin/modul/upload">
+                        <div class="mb-4">
+                            <label for="judul-modul" class="block text-gray-700">Judul Modul</label>
+                            <input type="text" id="judul-modul" name="judul_modul"
+                                class="w-full p-2 border border-gray-300 rounded-lg">
+                        </div>
+                        <div class="mb-4">
+                            <label for="keterangan" class="block text-gray-700">Keterangan</label>
+                            <input type="text" id="keterangan" name="keterangan_modul"
+                                class="w-full p-2 border border-gray-300 rounded-lg">
+                        </div>
+                        <div class="mb-4">
+                            <label for="file" class="block text-gray-700">File</label>
+                            <input type="file" id="file" name="upload_modul"
+                                class="w-full p-2 border border-gray-300 rounded-lg">
+                        </div>
+                        <button type="submit" class="bg-blue-900 text-white px-4 py-2 rounded-lg">Upload</button>
+                    </form>
+                </div>
+            </div>
+        </article>
+        <!-- Akhir Konten -->
+
+        <script src="https://cdn.tailwindcss.com"></script>
+    </main>
+</body>
+
+</html>
+<!-- Akhir partisi -->
