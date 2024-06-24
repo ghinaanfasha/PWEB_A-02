@@ -2,6 +2,8 @@
 const {
   Model
 } = require('sequelize');
+const Sequelize = require('sequelize'); 
+
 module.exports = (sequelize, DataTypes) => {
   class user extends Model {
     /**
@@ -18,6 +20,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   user.init({
+    id_user: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
     first_name: DataTypes.STRING,
     last_name: DataTypes.STRING,
     email: DataTypes.STRING,

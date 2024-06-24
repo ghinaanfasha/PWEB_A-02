@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Assignments</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  </head>
+  <body class="font-poppins m-0 p-0">
+    <!-- Partisi halaman -->
+    <main class="grid grid-cols-7 grid-rows-3">
+      <!-- Sidebar -->
+      <div class="sticky top-0">
+        <aside class="col-span-1 row-span-3 bg-[#374353] h-screen p-4">
+          <div class="h-1/4 flex flex-col items-center justify-center">
+            <img src="/images/HMSI.png" alt="HMSI">
+          </div>
+          <div class="flex flex-col w-full">
+            <button class="flex items-center text-[#e3ebf8] py-2 px-4 w-full transition-colors duration-300 cursor-pointer hover:bg-[#031227] hover:text-[#e3ebf8] rounded-md" onclick="window.location.href='/adminHome'">
+              <i class="fas fa-home mr-4"></i> Home
+            </button>
+            <button class="flex items-center text-[#e3ebf8] py-2 px-4 w-full transition-colors duration-300 cursor-pointer hover:bg-[#031227] hover:text-[#e3ebf8] rounded-md" onclick="window.location.href='#'">
+              <i class="fas fa-list-alt mr-4"></i> Daftar
+            </button>
+            <button class="flex items-center text-[#e3ebf8] py-2 px-4 w-full bg-[#031227] rounded-md" onclick="window.location.href='/adminMagang'">
+              <i class="fas fa-briefcase mr-4"></i> Magang
+            </button>
+            <button class="flex items-center text-[#e3ebf8] py-2 px-4 w-full transition-colors duration-300 cursor-pointer hover:bg-[#031227] hover:text-[#e3ebf8] rounded-md" onclick="window.location.href='/adminPenilaian'">
+              <i class="fas fa-file-alt mr-4"></i> Penilaian
+            </button>
+            <button class="flex items-center text-[#e3ebf8] py-2 px-4 w-full transition-colors duration-300 cursor-pointer hover:bg-[#031227] hover:text-[#e3ebf8] rounded-md" onclick="window.location.href='#'">
+              <i class="fas fa-user mr-4"></i> Profil
+            </button>
+          </div>
+        </aside>
+      </div>
+      <!-- Akhir sidebar -->
+
+      <!-- Konten -->
+      <article class="col-span-6 row-span-3">
+        <header class="bg-[#374353] flex items-center h-32">
+          <h2 class="text-3xl text-white font-bold px-4">Magang Laboratory Dasar Komputasi</h2>
+        </header>
+        <nav class="h-8 bg-[#031227] flex items-center sticky top-0">
+          <ul class="flex space-x-4 h-8 items-center">
+            <li><a href="#" class="text-white hover:text-gray-300 px-4">Schedule</a></li>
+            <li><a href="#" class="text-white hover:text-gray-300 px-4">Module</a></li>
+            <li><a href='/adminMagangAssignments' class="text-white hover:text-gray-300 px-4">Assignments</a></li>
+            <li><a href='/adminMagangAbsensi'class="text-white hover:text-gray-300 px-4">Absensi</a></li>
+          </ul>
+        </nav>
+        
+        <!-- Tampilan untuk tugas -->
+        <div id="assignmentsList" class="m-6 flex-col">
+          <!-- Tempat untuk daftar tugas yang sudah ada -->
+          <% assignments.forEach(assignment => { %>
+            <div class="h-24 m-6 border-4 rounded-xl flex-col">
+              <div class="flex h-8 mx-4 border-b-4 items-center justify-between">
+                <p>Tugas <%= assignment.id_tugas %> | <%= assignment.formattedDeadline %></p>
+                <div class="text-center">
+                  <button class="hover:text-blue-600" onclick="viewAssignment('<%= assignment.id_tugas %>')">View</button>
+                  <button class="hover:text-blue-600 pl-6" onclick="editAssignment('<%= assignment.id_tugas %>')">Edit</button>
+                </div>
+              </div>
+              <div class="flex h-16 pl-8 pt-2">
+                <h3 class="text-2xl"><%= assignment.judul_tugas %></h3>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+        
+        <!-- Modal View -->
+        <div id="viewModal" class="hidden fixed z-10 inset-0 overflow-y-auto">
+          <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+              <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+              <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <h3 class="text-lg leading-6 font-medium text-gray-900">View Assignment</h3>
+                <div class="mt-2">
+                  <p id="viewTitle" class="text-sm text-gray-500"></p>
+                  <p id="viewDescription" class="text-sm text-gray-500"></p>
+                  <p id="viewDeadline" class="text-sm text-gray-500"></p>
+                  <p id="viewFile" class="text-sm text-gray-500"></p>
+                </div>
+              </div>
+              <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" onclick="closeViewModal()">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Modal Edit -->
+        <div id="editModal" class="hidden fixed z-10 inset-0 overflow-y-auto">
+          <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+              <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+              <form id="editForm" onsubmit="submitEditForm(event)">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                  <h3 class="text-lg leading-6 font-medium text-gray-900">Edit Assignment</h3>
+                  <div class="mt-2">
+                    <input type="hidden" id="editId">
+                    <input type="text" id="editTitle" name="judul_tugas" class="border p-2 text-grey-darkest focus:outline-none focus:border-[#031227] rounded-md mb-3" placeholder="Judul Tugas">
+                    <input type="text" id="editDescription" name="keterangan" class="border p-2 text-grey-darkest focus:outline-none focus:border-[#031227] rounded-md mb-3" placeholder="Keterangan">
+                    <input type="datetime-local" id="editDeadline" name="deadline" class="border p-2 text-grey-darkest focus:outline-none focus:border-[#031227] rounded-md mb-3">
+                  </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                  <button type="submit" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-[#031227] text-base font-medium text-white hover:bg-[#374353] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#374353] sm:ml-3 sm:w-auto sm:text-sm">Save</button>
+                  <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#374353] sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" onclick="closeEditModal()">Cancel</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form Tambah Tugas -->
+        <div class="m-6 flex-col relative">
+          <div class="flex justify-end">
+            <button class="px-1 py-1 rounded-full hover:bg-[#031227] hover:text-white font-semibold" id="dropdownButton" aria-haspopup="true">
+              Tambah Tugas <i class="fas fa-plus"></i>
+            </button>
+          </div>
+          <div class="bg-white hidden absolute z-10 w-full mt-2" id="dropdownMenu" role="menu" aria-orientation="vertical" aria-labelledby="dropdownButton">
+            <div class="bg-[#E3EBF8] rounded-lg shadow-lg pt-2">
+              <h3 class="text-xl font-semibold ml-2">Tugas</h3>
+              <form id="taskForm" action="/adminMagangAssignments/add" method="POST" enctype="multipart/form-data">
+                <div class="flex flex-row mt-4">
+                  <div class="flex flex-col mb-4 w-9/12 px-4">
+                    <input type="text" id="title" name="judul_tugas" placeholder="Judul Tugas" class="border p-2 text-grey-darkest focus:outline-none focus:border-[#031227] rounded-md mb-3">
+                    <input type="text" id="description" name="keterangan" placeholder="Keterangan" class="border p-2 text-grey-darkest focus:outline-none focus:border-[#031227] rounded-md mb-3">
+                    <h6 class="text-base">Deadline</h6>
+                    <input type="datetime-local" id="deadline" name="deadline" class="border p-2 text-grey-darkest focus:outline-none focus:border-[#031227] rounded-md mb-3">
+                  </div>
+                  <div class="flex w-3/12 h-44 mr-4 bg-white rounded-md justify-center items-center focus:outline-none focus:border-[#031227]">
+                    <label for="task-file" class="p-2 text-grey-darkest cursor-pointer">File</label>
+                    <input type="file" id="task-file" name="file_tugas" class="hidden">
+                  </div>
+                </div>
+                <div class="flex justify-center items-center">
+                  <button class="block bg-[#031227] hover:bg-[#374353] text-white font-semibold py-2 px-8 mb-4 rounded-full" type="submit">
+                    Upload
+                  </button>
+                </div>
+              </form>
+              
+            </div>
+          </div>
+        </div>
+         <!-- Akhir form Tambah Tugas -->
+    </article>
+    <!-- Akhir Konten -->
+   </main>
+   <!-- Akhir partisi -->
+   <script src="/javascripts/script.js"></script> 
+  </body>
+</html>

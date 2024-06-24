@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Absensi</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
+<body>
+    <div class="m-6 relative">
+        <h1 class="text-xl font-semibold mb-2">Absensi untuk: <%= meeting.keterangan %></h1>
+        <form action="/adminMagangAbsensi/save-attendance" method="POST">
+            <input type="hidden" name="id_jadwal" value="<%= meeting.id_jadwal %>" class="text-xl font-semibold ml-2"/>
+            <table class="min-w-full">
+                <thead class="bg-[#E3EBF8]">
+                    <tr>
+                        <th scope="col" class="px-2 py-3 text-center text-sm font-bold tracking-wider border-b w-1/12 rounded-tl-lg">No</th>
+                        <th scope="col" class="px-2 py-3 text-center text-sm font-bold tracking-wider border-b w-3/12">Nama</th>
+                        <th scope="col" class="px-2 py-3 text-center text-sm font-bold tracking-wider border-b w-2/12">NIM</th>
+                        <th scope="col" class="px-2 py-3 text-center text-sm font-bold tracking-wider border-b w-2/12">Tanggal</th>
+                        <th scope="col" class="px-2 py-3 text-center text-sm font-bold tracking-wider border-b w-2/12">Waktu</th>
+                        <th scope="col" class="px-2 py-3 text-center text-sm font-bold tracking-wider border-b w-2/12 rounded-tr-lg">Status</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-gray-100 divide-y divide-gray-200">
+                    <% users.forEach((user, index) => { %>
+                    <tr class="even:bg-[#E3EBF8]">
+                        <td class="p-2 text-center whitespace-pre-line border-b"><%= index + 1 %></td>
+                        <td class="p-2 whitespace-pre-line border-b"><%= user.first_name %> <%= user.last_name %></td>
+                        <td class="p-2 text-center whitespace-pre-line border-b"><%= user.nim %></td>
+                        <td class="p-2 text-center whitespace-pre-line border-b"><%= new Date().toLocaleDateString() %></td>
+                        <td class="p-2 text-center whitespace-pre-line border-b"><%= new Date().toLocaleTimeString() %></td>
+                        <td class="p-2 text-center whitespace-pre-line border-b flex justify-center align-middle">
+                            <select name="attendances[<%= user.id_user %>]" id="kehadiran-<%= user.id_user %>" class="border-4 rounded-lg px-2">
+                                <option value="hadir">Hadir</option>
+                                <option value="izin">Izin</option>
+                                <option value="alfa">Alfa</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+            <div class="flex justify-center items-center mt-4">
+                <button class="block bg-[#031227] hover:bg-[#374353] text-white font-semibold py-2 px-8 my-4 rounded-full" type="submit">
+                    Simpan
+                </button>
+            </div>
+        </form>
+    </div>
+   
+</body>
+</html>
+

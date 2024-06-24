@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Absensi</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="font-poppins m-0 p-0">
+  <main class="grid grid-cols-7 grid-rows-3">
+    <!-- Sidebar -->
+    <div class="sticky top-0">
+      <aside class="col-span-1 row-span-3 bg-[#374353] h-screen p-4">
+        <div class="h-1/4 flex flex-col items-center justify-center">
+          <img src="/images/HMSI.png" alt="HMSI">
+        </div>
+        <div class="flex flex-col w-full">
+          <button class="flex items-center text-[#e3ebf8] py-2 px-4 w-full transition-colors duration-300 cursor-pointer hover:bg-[#031227] hover:text-[#e3ebf8] rounded-md" onclick="window.location.href='/adminHome'">
+            <i class="fas fa-home mr-4"></i> Home
+          </button>
+          <button class="flex items-center text-[#e3ebf8] py-2 px-4 w-full transition-colors duration-300 cursor-pointer hover:bg-[#031227] hover:text-[#e3ebf8] rounded-md" onclick="window.location.href='#'">
+            <i class="fas fa-list-alt mr-4"></i> Daftar
+          </button>
+          <button class="flex items-center text-[#e3ebf8] py-2 px-4 w-full bg-[#031227] rounded-md" onclick="window.location.href='/adminMagang'">
+            <i class="fas fa-briefcase mr-4"></i> Magang
+          </button>
+          <button class="flex items-center text-[#e3ebf8] py-2 px-4 w-full transition-colors duration-300 cursor-pointer hover:bg-[#031227] hover:text-[#e3ebf8] rounded-md" onclick="window.location.href='/adminPenilaian'">
+            <i class="fas fa-file-alt mr-4"></i> Penilaian
+          </button>
+          <button class="flex items-center text-[#e3ebf8] py-2 px-4 w-full transition-colors duration-300 cursor-pointer hover:bg-[#031227] hover:text-[#e3ebf8] rounded-md" onclick="window.location.href='#'">
+            <i class="fas fa-user mr-4"></i> Profil
+          </button>
+        </div>
+      </aside>
+    </div>
+    <!-- Akhir sidebar -->
+
+    <!-- Konten -->
+    <article class="col-span-6 row-span-3">
+      <header class="bg-[#374353] flex items-center h-32">
+        <h2 class="text-3xl text-white font-bold px-4">Magang Laboratory Dasar Komputasi</h2>
+      </header>
+      <nav class="h-8 bg-[#031227] flex items-center sticky top-0">
+        <ul class="flex space-x-4 h-8 items-center">
+          <li><a href="#" class="text-white hover:text-gray-300 px-4">Schedule</a></li>
+          <li><a href="#" class="text-white hover:text-gray-300 px-4">Module</a></li>
+          <li><a href='/adminMagangAssignments' class="text-white hover:text-gray-300 px-4">Assignments</a></li>
+          <li><a href='/adminMagangAbsensi'class="text-white hover:text-gray-300 px-4">Absensi</a></li>
+        </ul>
+      </nav>
+
+       <!-- Daftar Pertemuan -->
+        <% meetings.forEach(meeting => { 
+          let date = new Date(meeting.jadwal);
+          let formattedDate = date.toLocaleDateString('en-GB').replace(/\//g, '-'); // Format DD/MM/YYYY
+          let formattedTime = date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }); // Format HH:MM
+        %>
+        <div class="h-24 m-6 border-4 rounded-xl flex-col">
+          <div class="flex h-8 mx-4 border-b-4 items-center justify-between">
+              <p><%= formattedDate %> - <%= formattedTime %></p>
+              <div class="text-center">
+                  <a href="/adminMagangAbsensi/attendance/<%= encodeURIComponent(meeting.keterangan) %>" class="hover:text-blue-600 pl-6">View</a>
+              </div>
+          </div>
+          <div class="flex h-16 pl-8 pt-2">
+              <h3 class="text-2xl"><%= meeting.keterangan %></h3>
+          </div>
+        </div>
+        <% }) %>
+        <!-- Form Tambah Pertemuan -->
+        <div class="m-6 flex-col relative">
+            <div class="flex justify-end">
+                <button class="px-1 py-1 rounded-full hover:bg-[#031227] hover:text-white font-semibold" id="dropdownButton" aria-haspopup="true">
+                    Tambah Pertemuan <i class="fas fa-plus"></i>
+                </button>
+            </div>
+            <div class="bg-white hidden absolute z-10 w-full mt-2" id="dropdownMenu" role="menu" aria-orientation="vertical" aria-labelledby="dropdownButton">
+                <div class="rounded-lg shadow-lg pt-2 border-4">
+                    <div class="flex h-8 mx-4 border-b-4 items-center justify-between">
+                        <h3 class="text-xl font-semibold ml-2">Absensi Peserta Magang</h3>
+                    </div>
+                    <form action="/adminMagangAbsensi/create-meeting" method="POST" class="flex flex-row mt-4 ml-4">                    
+                        <input type="datetime-local" id="jadwal" name="jadwal" class="border p-2 text-grey-darkest focus:outline-none focus:border-[#031227] rounded-md mb-3">
+                        <input type="text" id="description" name="description" placeholder="Keterangan" class="border p-2 text-grey-darkest focus:outline-none focus:border-[#031227] rounded-md w-7/12 mx-4 mb-3">
+                        <button class="block bg-[#031227] hover:bg-[#374353] text-white font-semibold p-2 text-grey-darkest focus:outline-none rounded-full mr-4 mb-3" type="submit">
+                            Buat Pertemuan
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </article>
+  <!-- Akhir Konten -->
+  </main>
+  <!-- Akhir partisi -->
+  <script src="/javascripts/script.js"></script> 
+</body>
+</html>

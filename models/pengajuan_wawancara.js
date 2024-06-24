@@ -2,6 +2,8 @@
 const {
   Model
 } = require('sequelize');
+const Sequelize = require('sequelize'); 
+
 module.exports = (sequelize, DataTypes) => {
   class pengajuan_wawancara extends Model {
     /**
@@ -33,6 +35,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'pengajuan_wawancara',
+    freezeTableName: true
   });
   return pengajuan_wawancara;
 };

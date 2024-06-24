@@ -11,6 +11,13 @@ var dashboardRouter = require('./routes/dashboard');
 var userhomeRouter = require ('./routes/userhome')
 var userprofilRouter = require('./routes/userprofil');
 var ubahRouter = require('./routes/ubah');
+var adminHomeRouter = require('./routes/adminHome');
+var adminMagangRouter = require('./routes/adminMagang');
+var adminMagangAssignmentsRouter = require('./routes/adminMagangAssignments')(upload);
+var adminMagangAbsensiRouter = require('./routes/adminMagangAbsensi');
+var adminPenilaianRouter = require('./routes/adminPenilaian');
+var adminPenilaianPembobotanRouter = require('./routes/adminPenilaianPembobotan');
+var adminPenilaianKalkulasiRouter = require('./routes/adminPenilaianKalkulasi');
 
 var app = express();
 
@@ -31,6 +38,14 @@ app.use('/dashboard', dashboardRouter);
 app.use('/userhome', userhomeRouter);
 app.use('/userprofil', userprofilRouter);
 app.use('/ubah', ubahRouter);
+app.use('/adminHome', adminHomeRouter);
+app.use('/adminMagang', adminMagangRouter);
+app.use('/adminMagangAssignments', adminMagangAssignmentsRouter);
+app.use('/adminMagangAbsensi', adminMagangAbsensiRouter);
+app.use('/adminPenilaian', adminPenilaianRouter);
+app.use('/adminPenilaianPembobotan', adminPenilaianPembobotanRouter);
+app.use('/adminPenilaianKalkulasi', adminPenilaianKalkulasiRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

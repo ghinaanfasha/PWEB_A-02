@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pembobotan</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="font-poppins m-0 p-0">
+<main class="grid grid-cols-7 grid-rows-3">
+    <!-- Sidebar -->
+    <div class="sticky top-0">
+        <aside class="col-span-1 row-span-3 bg-[#374353] h-screen p-4">
+        <div class="h-1/4 flex flex-col items-center justify-center">
+            <img src="/images/HMSI.png" alt="HMSI">
+        </div>
+        <div class="flex flex-col w-full">
+            <button class="flex items-center text-[#e3ebf8] py-2 px-4 w-full transition-colors duration-300 cursor-pointer hover:bg-[#031227] hover:text-[#e3ebf8] rounded-md" onclick="window.location.href='/adminHome'">
+                <i class="fas fa-home mr-4"></i> Home
+            </button>
+            <button class="flex items-center text-[#e3ebf8] py-2 px-4 w-full transition-colors duration-300 cursor-pointer hover:bg-[#031227] hover:text-[#e3ebf8] rounded-md" onclick="window.location.href='#'">
+                <i class="fas fa-list-alt mr-4"></i> Daftar
+            </button>
+            <button  class="flex items-center text-[#e3ebf8] py-2 px-4 w-full transition-colors duration-300 cursor-pointer hover:bg-[#031227] hover:text-[#e3ebf8] rounded-md" onclick="window.location.href='/adminMagang'">
+                <i class="fas fa-briefcase mr-4"></i> Magang
+            </button>
+            <button class="flex items-center text-[#e3ebf8] py-2 px-4 w-full bg-[#031227] rounded-md" onclick="window.location.href='/adminPenilaian'">
+                <i class="fas fa-file-alt mr-4"></i> Penilaian
+            </button>
+            <button class="flex items-center text-[#e3ebf8] py-2 px-4 w-full transition-colors duration-300 cursor-pointer hover:bg-[#031227] hover:text-[#e3ebf8] rounded-md" onclick="window.location.href='#'">
+                <i class="fas fa-user mr-4"></i> Profil
+            </button>
+        </div>
+        </aside>
+    </div>
+    <!-- Akhir sidebar -->
+
+    <!-- Konten -->
+    <article class="col-span-6 row-span-3">
+        <header class="bg-[#374353] flex items-center h-32">
+            <h2 class="text-3xl text-white font-bold px-4">Magang Laboratory Dasar Komputasi</h2>
+        </header>
+        <nav class="h-8 bg-[#031227] flex items-center sticky top-0">
+            <ul class="flex space-x-4 h-8 items-center">
+              <li><a href='/adminPenilaianPembobotan' class="text-white hover:text-gray-300 px-4">Pembobotan</a></li>
+              <li><a href='/adminPenilaian' class="text-white hover:text-gray-300 px-4">Penilaian</a></li>
+              <li><a href='/adminPenilaianKalkulasi' class="text-white hover:text-gray-300 px-4">Kalkulasi</a></li>
+            </ul>
+        </nav>
+
+        <!-- Tampilan tabel tugas -->
+        <div class="h-fit m-6 border-4 rounded-xl flex-col">
+            <div class="flex h-8 border-b-4 items-center justify-between py-5">
+                <h4 class="text-base font-bold ml-2">Pembobotan Nilai Tugas Magang</h4>
+            </div>
+            <div class="flex h-fit px-6 py-4">
+                <form action="/adminPenilaianPembobotan/update" method="post" class="w-full">
+                  <div class="w-full">
+                    <table class="min-w-full table-auto">
+                      <thead class="bg-[#E3EBF8]">
+                        <tr>
+                          <th scope="col" class="px-2 py-3 text-center text-sm font-bold tracking-wider border-b w-1/12 rounded-tl-lg">No</th>
+                          <th scope="col" class="px-2 py-3 text-center text-sm font-bold tracking-wider border-b w-2/12">Tugas</th>
+                          <th scope="col" class="px-2 py-3 text-center text-sm font-bold tracking-wider border-b w-8/12">Keterangan</th>
+                          <th scope="col" class="px-2 py-3 text-center text-sm font-bold tracking-wider border-b w-1/12 rounded-tr-lg">Bobot</th>
+                        </tr>
+                      </thead>
+                      <tbody class="bg-gray-100 divide-y divide-gray-200">
+                        <% assignments.forEach((assignment, index) => { %>
+                          <tr class="even:bg-[#E3EBF8]">
+                            <td class="p-2 text-center text-xs whitespace-pre-line border-b"><%= index + 1 %></td>
+                            <td class="p-2 text-xs whitespace-pre-line border-b"><%= assignment.judul_tugas %></td>
+                            <td class="p-2 text-xs whitespace-pre-line border-b"><%= assignment.keterangan %></td>
+                            <td class="p-2 text-xs text-center flex items-center whitespace-pre-line border-b">
+                              <input type="number" name="bobot_tugas_<%= assignment.id_tugas %>" value="<%= assignment.bobot_tugas %>" min="0" class="w-16 p-2 border rounded-md"></td>
+                          </tr>
+                        <% }) %>
+                      </tbody>
+                  </table> 
+                  </div>
+                    
+                    <div class="flex justify-center items-center my-4">
+                        <button class="block bg-[#031227] hover:bg-[#374353] text-white font-semibold py-2 px-8 rounded-full" type="submit">
+                          Simpan
+                        </button>
+                    </div>
+                </form>
+            </div>
+      </div>
+      <!-- Akhir tampilan tabel tugas -->
+    </article>
+    <!-- Akhir konten -->
+</main> 
+</body>
+</html>

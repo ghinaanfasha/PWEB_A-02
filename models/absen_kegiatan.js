@@ -1,38 +1,42 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
+const { Model, DataTypes } = require('sequelize');
+
+module.exports = (sequelize) => {
   class absen_kegiatan extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      // Define associations here
     }
   }
+
   absen_kegiatan.init({
     id_jadwal: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      allowNull: false,
       references: {
         model: 'jadwal_kegiatan',
         key: 'id_jadwal'
       }
     },
     id_user: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      allowNull: false,
       references: {
         model: 'user',
         key: 'id_user'
       }
     },
-    kehadiran: DataTypes.STRING
+    kehadiran: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'absen_kegiatan',
-    freezeTableName: true
+    tableName: 'absen_kegiatan',
+    timestamps: false
   });
+
   return absen_kegiatan;
 };
